@@ -12,8 +12,14 @@ jobs:
    - stage: test
      script: echo test
      if: branch =~ /^feature\/.*$/
-   
+
    - stage: deploy
      script: echo deploy
      if: branch =~ /master/
 
+notifications:
+   email:
+      recipients:
+      - luannm@dwarvesv.com
+      on_success: always
+      on_failure: always
