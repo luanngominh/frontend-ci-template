@@ -16,6 +16,8 @@ jobs:
       - stage: "deploy"
         name: "Deploy to heroku"
         script: echo deploy
+        deploy: &heroku
+           provider: heroku
         if: branch =~ /master/
 
 notifications:
