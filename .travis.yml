@@ -16,11 +16,6 @@ jobs:
       - stage: "deploy"
         name: "Deploy to heroku"
         script: echo deploy
-        deploy: &heroku
-           provider: heroku
-           app: frontenci
-           api_key:
-        if: branch =~ /master/
 
 notifications:
    email:
