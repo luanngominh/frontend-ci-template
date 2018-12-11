@@ -18,6 +18,8 @@ jobs:
         script: echo deploy
         deploy: &heroku
            provider: heroku
+           app: frontenci
+           api_key:
         if: branch =~ /master/
 
 notifications:
