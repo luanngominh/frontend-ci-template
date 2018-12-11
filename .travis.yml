@@ -11,7 +11,7 @@ jobs:
    include:
       - stage: "test"
         name: "Run unit test"
-        script: exit 1
+        script: npm test
 
       - stage: "deploy"
         name: "Deploy to heroku"
