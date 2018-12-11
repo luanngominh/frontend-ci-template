@@ -1,0 +1,11 @@
+language: node_js
+os: linux
+node_js:
+   - "10"
+
+before_script:
+   - npm install
+   - npm install --save-dev mocha chai
+
+script:
+   - echo xxx
