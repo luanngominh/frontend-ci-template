@@ -7,5 +7,13 @@ before_script:
    - npm install
    - npm install --save-dev mocha chai
 
-script:
-   - echo xxx
+jobs:
+   include:
+   - stage: test
+     script: echo test
+     if: branch =~ /^feature\/.*$/
+   
+   - stage: deploy
+     script: echo deploy
+     if: branch =~ /master/
+
