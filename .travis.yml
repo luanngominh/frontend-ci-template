@@ -13,9 +13,15 @@ jobs:
         name: "Run unit test"
         script: npm test
 
+      - stage: "build"
+        name: "Push to docker hub"
+        script: exit 1
+        if: branch = master
+
       - stage: "deploy"
-        name: "Deploy to heroku"
-        script: echo deploy
+        name: "Deploy app to kube"
+        script: echo meowmeow
+        if: branch = master
 
 notifications:
    email:
