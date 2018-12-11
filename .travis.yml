@@ -7,8 +7,16 @@ before_script:
    - npm install
    - npm install --save-dev mocha chai
 
-script:
-   - npm test
+jobs:
+   include:
+      - stage: "test"
+        name: "Run unit test"
+        script: npm test
+
+      - stage: "deploy"
+        name: "Deploy to heroku"
+        script: echo deploy
+
 
 notifications:
    email:
