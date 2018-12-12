@@ -12,6 +12,7 @@ jobs:
       - stage: "test"
         name: "Run unit test"
         script: npm test
+        os: osx
 
       - stage: "build"
         name: "Push to docker hub"
