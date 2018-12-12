@@ -3,16 +3,14 @@ os: linux
 node_js:
    - "10"
 
-before_script:
-   - npm install
-   - npm install --save-dev mocha chai
-
 jobs:
    include:
       - stage: "test"
         name: "Run unit test"
-        script: npm test
-        os: osx
+        before_script:
+           - npm install
+           - npm install --save-dev mocha chai
+        script: npm test; echo $docker_password
 
       - stage: "build"
         name: "Push to docker hub"
