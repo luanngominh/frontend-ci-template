@@ -10,16 +10,18 @@ jobs:
         before_script:
            - npm install
            - npm install --save-dev mocha chai
-        script: npm test; echo $docker_password
+        script: npm test
+        if: branch = master
 
       - stage: "build"
         name: "Push to docker hub"
         services: 
           - docker
         script:
-           - echo "$docker_password" | docker login -u "$docker_username" --password-stdin
-           - docker build -t frontend-ci .
-           - docker push frontend-ci
+           - echo $docker_password; echo $docker_username
+           #- echo "$docker_password" | docker login -u "$docker_username" --password-stdin
+           #- docker build -t frontend-ci .
+           #- docker push frontend-ci
         #if: branch = master
 
       - stage: "deploy"
