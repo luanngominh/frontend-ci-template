@@ -18,10 +18,12 @@ jobs:
         services: 
           - docker
         script:
-           - echo $docker_password; echo $docker_username
-           #- echo "$docker_password" | docker login -u "$docker_username" --password-stdin
-           #- docker build -t frontend-ci .
-           #- docker push frontend-ci
+           - dockerpass=`echo $DOCKER_PASSWORD | base64 -d`
+           - dockeruser=`echo $DOCKER_USERNAME | base64 -d`
+           - echo $dockerpass
+           - echo "$dockerpass" | docker login -u "$dockeruser" --password-stdin
+           - docker build -t frontend-ci .
+           - docker push frontend-ci
         #if: branch = master
 
       - stage: "deploy"
