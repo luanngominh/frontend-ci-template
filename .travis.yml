@@ -11,7 +11,6 @@ jobs:
            - npm install
            - npm install --save-dev mocha chai
         script: npm test
-        if: branch = master
 
       - stage: "build"
         name: "Push to docker hub"
@@ -23,7 +22,7 @@ jobs:
            - echo "$dockerpass" | docker login -u "$dockeruser" --password-stdin
            - docker build -t luanngominh/frontend-ci .
            - docker push luanngominh/frontend-ci
-        #if: branch = master
+        if: branch = master
 
       - stage: "deploy"
         name: "Deploy app to kube"
