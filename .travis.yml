@@ -3,24 +3,31 @@ os: linux
 node_js:
    - "10"
 
-before_script:
-   - npm install
-   - npm install --save-dev mocha chai
-
 jobs:
    include:
       - stage: "test"
         name: "Run unit test"
+        before_script:
+           - npm install
+           - npm install --save-dev mocha chai
         script: npm test
 
+      - stage: "build"
+        name: "Push to docker hub"
+        services: 
+          - docker
+        script:
+           - dockerpass=`echo $DOCKER_PASSWORD | base64 -d`
+           - dockeruser=`echo $DOCKER_USERNAME | base64 -d`
+           - echo "$dockerpass" | docker login -u "$dockeruser" --password-stdin
+           - docker build -t luanngominh/frontend-ci .
+           - docker push luanngominh/frontend-ci
+        if: branch = master
+
       - stage: "deploy"
-        name: "Deploy to heroku"
-        script: echo deploy
-        deploy: &heroku
-           provider: heroku
-           app: frontenci
-           api_key:
-        if: branch =~ /master/
+        name: "Deploy app to kube"
+        script: echo meowmeow
+        if: branch = master
 
 notifications:
    email:
