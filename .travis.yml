@@ -20,10 +20,9 @@ jobs:
         script:
            - dockerpass=`echo $DOCKER_PASSWORD | base64 -d`
            - dockeruser=`echo $DOCKER_USERNAME | base64 -d`
-           - echo $dockerpass
            - echo "$dockerpass" | docker login -u "$dockeruser" --password-stdin
-           - docker build -t frontend-ci .
-           - docker push frontend-ci
+           - docker build -t luanngominh/frontend-ci .
+           - docker push luanngominh/frontend-ci
         #if: branch = master
 
       - stage: "deploy"
