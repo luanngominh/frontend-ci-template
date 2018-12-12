@@ -15,7 +15,9 @@ jobs:
 
       - stage: "build"
         name: "Push to docker hub"
-        script: exit 1
+        script: 
+        - echo 1
+        - echo 2
         if: branch = master
 
       - stage: "deploy"
