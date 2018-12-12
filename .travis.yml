@@ -16,9 +16,12 @@ jobs:
 
       - stage: "build"
         name: "Push to docker hub"
+        services: 
+          - docker
         script:
-        - echo 1
-        - echo 2 
+           - echo "$docker_password" | docker login -u "$docker_username" --password-stdin
+           - docker build -t frontend-ci .
+           - docker push frontend-ci
         #if: branch = master
 
       - stage: "deploy"
