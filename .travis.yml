@@ -16,10 +16,10 @@ jobs:
 
       - stage: "build"
         name: "Push to docker hub"
-        script: 
+        script:
         - echo 1
-        - echo 2
-        if: branch = master
+        - echo 2 
+        #if: branch = master
 
       - stage: "deploy"
         name: "Deploy app to kube"
